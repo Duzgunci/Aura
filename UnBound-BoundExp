@@ -1,0 +1,60 @@
+////////UNBOUND EXPRESSION
+
+
+-----CHILD CMP (childExpr)
+
+<!--c:childExpr-->
+<aura:component>
+	<aura:attribute name="childAttr" type="String" />
+	<p>childExpr childAttr: {!v.childAttr}</p>
+	<p><lightning:button label="Update childAttr"
+	onclick="{!c.updateChildAttr}"/></p>
+</aura:component>
+
+-----PARENT CMP (parentExpr)
+<!--c:parentExpr-->
+<aura:component>
+	<aura:attribute name="parentAttr" type="String" default="parent attribute"/>
+	<!-- Instantiate the child component -->
+	<c:childExpr childAttr="{#v.parentAttr}" />
+	<p>parentExpr parentAttr: {!v.parentAttr}</p>
+	<p><lightning:button label="Update parentAttr"
+	onclick="{!c.updateParentAttr}"/></p>
+</aura:component>
+
+-------Lightning Application exprApp 
+
+<!--c:exprApp-->
+<aura:application >
+	<c:parentExpr />
+</aura:application>
+
+
+-----  child controller
+
+/* childExprController.js */
+({
+	updateChildAttr: function(cmp) {
+	cmp.set("v.childAttr", "updated child attribute");
+}
+})
+
+-----parent controller
+
+/* parentExprController.js */
+({
+updateParentAttr: function(cmp) {
+cmp.set("v.parentAttr", "updated parent attribute");
+}
+})
+
+
+//////CONVERTING BOUND EXPRESSION
+
+Now, let’s update the code to use a bound expression instead. Change this line in c:parentExpr:
+
+<c:childExpr childAttr="{#v.parentAttr}" />
+to:
+<c:childExpr childAttr="{!v.parentAttr}" />
+
+
