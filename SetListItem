@@ -1,4 +1,4 @@
-----CMP FILE
+----CMP FILE (SetListItem)
 
 <aura:component>
 	<aura:attribute name="numbers" type="List"/>
@@ -10,7 +10,7 @@
 </aura:component>
 
 
------CONTROLLER
+-----CONTROLLER (SetListItem)
 
 /** Client-side Controller **/
 ({
@@ -25,7 +25,7 @@ component.set("v.numbers", numbers);
 }
 })
 
-------APPLICATION
+------APPLICATION (SetListApp)
 
 <aura:application >
     <c:SetListItem/>
