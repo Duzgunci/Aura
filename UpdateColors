@@ -1,0 +1,50 @@
+-------APEX CLASS
+
+public class AttributeTypes {
+	@AuraEnabled
+	public static String[] getStringArray() {
+	String[] arrayItems = new String[]{ 'red', 'green', 'blue' };
+	return arrayItems;
+	}
+}
+
+
+--------CMP FILE
+<aura:component controller="AttributeTypes">
+	<aura:attribute name="favoriteColors" type="String[]" default="['cyan', 'yellow',
+	'magenta']"/>
+	<aura:iteration items="{!v.favoriteColors}" var="s">
+	<p>{!s}</p>
+	</aura:iteration>
+	<lightning:button onclick="{!c.getString}" label="Update"/>
+</aura:component>
+
+
+------CONTROLLER FILE
+
+({
+getString : function(component, event) {
+	var action = component.get("c.getStringArray");
+	action.setCallback(this, function(response) {
+	var state = response.getState();
+	  if (state === "SUCCESS") {
+	var stringItems = response.getReturnValue();
+	component.set("v.favoriteColors", stringItems);
+}
+});
+	$A.enqueueAction(action);
+}
+})
+
+--------APPLICATION
+
+<aura:application >
+    <c:RetrieveData/>
+</aura:application>
+
+
+
+
+
+
+
