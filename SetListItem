@@ -1,0 +1,32 @@
+----CMP FILE
+
+<aura:component>
+	<aura:attribute name="numbers" type="List"/>
+	<lightning:button onclick="{!c.getNumbers}" label="Display Numbers" />
+	<aura:iteration var="num" items="{!v.numbers}">
+	{!num.value}
+	</aura:iteration>
+    
+</aura:component>
+
+
+-----CONTROLLER
+
+/** Client-side Controller **/
+({
+getNumbers: function(component, event, helper) {
+var numbers = [];
+for (var i = 0; i < 20; i++) {
+numbers.push({
+value: i
+});
+}
+component.set("v.numbers", numbers);
+}
+})
+
+------APPLICATION
+
+<aura:application >
+    <c:SetListItem/>
+</aura:application>
