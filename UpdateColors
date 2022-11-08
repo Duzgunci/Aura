@@ -1,4 +1,4 @@
--------APEX CLASS
+-------APEX CLASS (AttributeTypes)
 
 public class AttributeTypes {
 	@AuraEnabled
@@ -9,7 +9,7 @@ public class AttributeTypes {
 }
 
 
---------CMP FILE
+--------CMP FILE  (UpdateColors)
 <aura:component controller="AttributeTypes">
 	<aura:attribute name="favoriteColors" type="String[]" default="['cyan', 'yellow',
 	'magenta']"/>
@@ -20,7 +20,7 @@ public class AttributeTypes {
 </aura:component>
 
 
-------CONTROLLER FILE
+------CONTROLLER FILE 
 
 ({
 getString : function(component, event) {
@@ -36,7 +36,7 @@ getString : function(component, event) {
 }
 })
 
---------APPLICATION
+--------APPLICATION (UpdateColorApp)
 
 <aura:application >
     <c:RetrieveData/>
